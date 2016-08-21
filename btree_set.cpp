@@ -48,10 +48,11 @@ struct node
 		int branch = (value >> (level-1)) & 0x01;
 
 		if(child[branch])
+		{
 			child[branch]->remove_value(value, level-1);
-
-		delete child[branch];
-		child[branch] = NULL;
+			delete child[branch];
+			child[branch] = NULL;
+		}
 	}
 
 	int has_value(int value, int level = TREE_LEVELS)
@@ -76,6 +77,9 @@ int main(void)
 	cout << root.has_value(1) << endl;
 
 	root.add_value(1);
+	cout << root.has_value(1) << endl;
+
+	root.remove_value(1);
 	cout << root.has_value(1) << endl;
 
 	root.remove_value(1);
